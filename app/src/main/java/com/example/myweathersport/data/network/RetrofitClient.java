@@ -1,3 +1,6 @@
+// RetrofitClient → configure et fournit une instance pour appeler ces requêtes facilement.
+
+
 package com.example.myweathersport.data.network;
 
 import retrofit2.Retrofit;

@@ -1,3 +1,6 @@
+// En Java avec Retrofit, l’interface sert à définir les requêtes HTTP que ton application va envoyer à l’API.
+
+
 package com.example.myweathersport.data.network;
 
 // Import des modèles de données pour récupérer la météo
