@@ -18,6 +18,7 @@ public class WeatherRepository {
     public WeatherRepository() {
         this.service = RetrofitClient.getService();
         // Il récupère la clé API sécurisée tout seul
+        // Stock la clé ici
         this.apiKey = "7013e2ba6fad8cc1b0058b65eb59e5b1";
     }
 
