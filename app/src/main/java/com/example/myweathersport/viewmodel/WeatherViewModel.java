@@ -19,9 +19,12 @@ public class WeatherViewModel extends ViewModel {
     private MutableLiveData<WeatherResponse> currentWeather = new MutableLiveData<>();
     private MutableLiveData<ForecastResponse> forecast = new MutableLiveData<>();
 
-    // 1. Le constructeur est maintenant vide, il ne demande plus de clé API.
+    // Variable pour mémoriser la ville actuellement recherchée
+    private String currentCity = "";
+
+    // Le constructeur est maintenant vide, il ne demande plus de clé API.
     public WeatherViewModel() {
-        // 2. On appelle le nouveau constructeur vide du Repository.
+        // On appelle le nouveau constructeur vide du Repository.
         repository = new WeatherRepository();
     }
 
@@ -37,11 +40,15 @@ public class WeatherViewModel extends ViewModel {
 
     // Méthodes pour appeler le Repository
     public void loadCurrentWeather(String city) {
+        this.currentCity = city; // On sauvegarde la ville pour une utilisation future (dans le ForecastFragment)
         repository.getCurrentWeather(city, currentWeather);
     }
 
-    public void loadForecast(String city) {
-        repository.getForecast(city, forecast);
+    // La méthode pour les prévisions n'a plus besoin du nom de la ville en paramètre
+    public void loadForecast() {
+        if (!currentCity.isEmpty()) {
+            repository.getForecast(currentCity, forecast);
+        }
     }
 
     // --- Logique pour recommander un sport selon la météo ---
