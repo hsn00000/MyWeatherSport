@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Lie le ViewModel au cycle de vie de ce fragment
-        viewModel = new ViewModelProvider(this).get(WeatherViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(WeatherViewModel.class);
 
         // Initialise toutes les vues en utilisant view.findViewById()
         etCityName = view.findViewById(R.id.etCityName);
