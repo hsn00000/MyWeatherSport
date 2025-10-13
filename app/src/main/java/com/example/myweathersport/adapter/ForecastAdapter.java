@@ -17,6 +17,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     private List<ForecastResponse.ForecastItem> forecastItems = new ArrayList<>();
 
+    // --- MÉTHODE 1 (OBLIGATOIRE) ---
     @NonNull
     @Override
     public ForecastViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -24,22 +25,27 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         return new ForecastViewHolder(view);
     }
 
+    // --- MÉTHODE 2 (OBLIGATOIRE) ---
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
         ForecastResponse.ForecastItem item = forecastItems.get(position);
         holder.bind(item);
     }
 
+    // --- MÉTHODE 3 (OBLIGATOIRE) ---
+    // C'est probablement cette méthode qui manquait.
     @Override
     public int getItemCount() {
         return forecastItems.size();
     }
 
+    // Méthode pour mettre à jour les données de la liste
     public void setForecastItems(List<ForecastResponse.ForecastItem> items) {
         this.forecastItems = items;
         notifyDataSetChanged();
     }
 
+    // Le ViewHolder qui gère chaque ligne
     static class ForecastViewHolder extends RecyclerView.ViewHolder {
         private TextView tvDate;
         private TextView tvTemp;
