@@ -11,5 +11,15 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 
+        <action
+            android:id="@+id/action_homeFragment_to_forecastFragment"
+            app:destination="@id/forecastFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/forecastFragment"
+        android:name="com.example.myweathersport.ui.forecast.ForecastFragment"
+        android:label="fragment_forecast"
+        tools:layout="@layout/fragment_forecast" />
+
 </navigation>

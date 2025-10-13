@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
             // Utilise le NavController pour naviguer vers ForecastFragment
             // L'action est définie dans votre fichier nav_graph.xml
             NavHostFragment.findNavController(HomeFragment.this)
-                    .navigate(R.id.action_HomeFragment_to_ForecastFragment);
+                    .navigate(R.id.action_homeFragment_to_forecastFragment);
         });
 
         // Met en place les observateurs qui attendent les données du ViewModel
