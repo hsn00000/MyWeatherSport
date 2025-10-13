@@ -105,7 +105,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         private int getWeatherIconResId(String condition) {
             if (condition.equalsIgnoreCase("Clear")) return R.drawable.ic_sun;
             if (condition.equalsIgnoreCase("Clouds")) return R.drawable.ic_cloud;
-            if (condition.equalsIgnoreCase("Rain")) return R.drawable.ic_rain;
+            if (condition.equalsIgnoreCase  ("Rain")) return R.drawable.ic_rain;
             if (condition.equalsIgnoreCase("Snow")) return R.drawable.ic_snow;
             return R.drawable.ic_cloud; // Icône par défaut
         }
