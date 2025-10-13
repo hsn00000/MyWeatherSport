@@ -19,9 +19,10 @@ public class WeatherViewModel extends ViewModel {
     private MutableLiveData<WeatherResponse> currentWeather = new MutableLiveData<>();
     private MutableLiveData<ForecastResponse> forecast = new MutableLiveData<>();
 
-    // Le constructeur reçoit la clé API pour le Repository
-    public WeatherViewModel(String apiKey) {
-        repository = new WeatherRepository(apiKey);
+    // 1. Le constructeur est maintenant vide, il ne demande plus de clé API.
+    public WeatherViewModel() {
+        // 2. On appelle le nouveau constructeur vide du Repository.
+        repository = new WeatherRepository();
     }
 
     // LiveData observable pour la météo actuelle

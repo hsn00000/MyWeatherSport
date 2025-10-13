@@ -2,18 +2,18 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+// Cette partie n'est plus nécessaire pour la clé API, mais on la laisse au cas où.
 def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 def OPENWEATHER_API_KEY = localProperties.getProperty("OPENWEATHER_API_KEY")
 
+// Un seul bloc "android" commence ici
 android {
     namespace 'com.example.myweathersport'
     compileSdk 36
 
+
     defaultConfig {
-
-        buildConfigField "String", "OPENWEATHER_API_KEY", "\"${OPENWEATHER_API_KEY}\""
-
         applicationId "com.example.myweathersport"
         minSdk 28
         targetSdk 36
@@ -33,21 +33,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-}
+} // Le seul bloc "android" se termine ici
 
 dependencies {
-
     // ----- Cœur d'Android et UI -----
-    implementation libs.appcompat // Ou 'androidx.appcompat:appcompat:1.7.0'
-    implementation libs.material // Ou 'com.google.android.material:material:1.12.0'
-    implementation libs.constraintlayout // Ou 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation libs.activity // Ou 'androidx.activity:activity:1.9.0'
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+    implementation libs.activity
 
     // ----- Cycle de vie (ViewModel & LiveData) -----
-    // On garde uniquement les versions les plus récentes et on supprime les anciennes
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.8.0'
     implementation 'androidx.lifecycle:lifecycle-livedata:2.8.0'
-    // La dépendance 'lifecycle-extensions' est obsolète et doit être supprimée
 
     // ----- Réseau (Retrofit pour les appels API) -----
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -65,7 +62,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
 
     // ----- Tests -----
-    testImplementation libs.junit // Ou 'junit:junit:4.13.2'
-    androidTestImplementation libs.ext.junit // Ou 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation libs.espresso.core // Ou 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
 }
