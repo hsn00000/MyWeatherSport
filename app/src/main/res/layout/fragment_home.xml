@@ -89,9 +89,9 @@
 
             <ImageView
                 android:id="@+id/ivSport"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
                 tools:src="@drawable/natation" />
 
             <TextView
