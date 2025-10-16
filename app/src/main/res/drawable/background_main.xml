@@ -1,4 +1,0 @@
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/background_night" android:state_night_mode="true"/>
-    <item android:drawable="@drawable/background_day" android:state_night_mode="false"/>
-</selector>

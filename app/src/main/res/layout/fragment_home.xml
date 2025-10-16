@@ -4,26 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
     tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/weatherCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="gone"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:padding="24dp">
 
             <TextView
                 android:id="@+id/tvCityName"
@@ -38,8 +39,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
-                tools:src="@drawable/ic_sun"
-                android:contentDescription="Icône météo actuelle" />
+                tools:src="@drawable/ic_sun" />
 
             <TextView
                 android:id="@+id/tvTemperature"
@@ -63,33 +63,35 @@
         android:id="@+id/sportCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
+        android:visibility="gone"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
-        app:layout_constraintTop_toBottomOf="@id/weatherCard"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weatherCard"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:padding="24dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sport Suggéré"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/ivSport"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 tools:src="@drawable/natation" />
 
             <TextView
@@ -97,41 +99,67 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 tools:text="Natation" />
-
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
-            android:id="@+id/etCityName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Entrez un nom de ville" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <Button
-            android:id="@+id/btnSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rechercher" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Rechercher une ville"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnGoToForecast"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Voir les prévisions sur 5 jours"
-            style="?attr/materialButtonOutlinedStyle"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCityName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ex: Paris, Annecy..." />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="12dp"
+                android:text="Rechercher"
+                app:cornerRadius="12dp" />
+
+            <Button
+                android:id="@+id/btnGoToForecast"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voir les prévisions sur 5 jours"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

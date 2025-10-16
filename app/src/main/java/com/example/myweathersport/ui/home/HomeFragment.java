@@ -28,12 +28,13 @@ public class HomeFragment extends Fragment {
 
     private WeatherViewModel viewModel;
 
-    // Déclaration des vues
+    // Déclaration des vues de l'interface
     private EditText etCityName;
     private Button btnSearch;
     private Button btnGoToForecast;
     private TextView tvCityName, tvTemperature, tvWeatherDescription, tvSportName;
-    private ImageView ivSport, ivCurrentWeatherIcon;
+    private ImageView ivSport;
+    private ImageView ivCurrentWeatherIcon; // <-- NOUVELLE ImageView pour l'icône météo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,9 +45,10 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Lie le ViewModel au cycle de vie de l'ACTIVITY pour le partage de données
         viewModel = new ViewModelProvider(requireActivity()).get(WeatherViewModel.class);
 
-        // Initialisation des vues
+        // Initialise toutes les vues
         etCityName = view.findViewById(R.id.etCityName);
         btnSearch = view.findViewById(R.id.btnSearch);
         btnGoToForecast = view.findViewById(R.id.btnGoToForecast);
@@ -55,9 +57,8 @@ public class HomeFragment extends Fragment {
         tvWeatherDescription = view.findViewById(R.id.tvWeatherDescription);
         ivSport = view.findViewById(R.id.ivSport);
         tvSportName = view.findViewById(R.id.tvSportName);
-        ivCurrentWeatherIcon = view.findViewById(R.id.ivCurrentWeatherIcon);
+        ivCurrentWeatherIcon = view.findViewById(R.id.ivCurrentWeatherIcon); // <-- Initialisation
 
-        // Logique des boutons
         btnSearch.setOnClickListener(v -> {
             String city = etCityName.getText().toString();
             if (!city.trim().isEmpty()) {
@@ -84,7 +85,8 @@ public class HomeFragment extends Fragment {
                 String description = weatherResponse.getWeather().get(0).getDescription();
                 tvWeatherDescription.setText(description.substring(0, 1).toUpperCase() + description.substring(1));
 
-                String weatherCondition = weatherResponse.getWeather().get(0).getMain();
+                // Met à jour la nouvelle icône météo
+                String weatherCondition = weatherResponse.getWeather().isEmpty() ? "" : weatherResponse.getWeather().get(0).getMain();
                 ivCurrentWeatherIcon.setImageResource(getWeatherIconResId(weatherCondition));
 
                 List<Sport> recommendedSports = viewModel.recommendSports(
@@ -105,11 +107,17 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    // Méthode pour choisir la bonne icône en fonction de la condition météo
     private int getWeatherIconResId(String condition) {
-        if (condition.equalsIgnoreCase("Clear")) return R.drawable.ic_sun;
-        if (condition.equalsIgnoreCase("Clouds")) return R.drawable.ic_cloud;
-        if (condition.equalsIgnoreCase("Rain")) return R.drawable.ic_rain;
-        if (condition.equalsIgnoreCase("Snow")) return R.drawable.ic_snow;
+        if (condition.equalsIgnoreCase("Clear")) {
+            return R.drawable.ic_sun;
+        } else if (condition.equalsIgnoreCase("Clouds")) {
+            return R.drawable.ic_cloud;
+        } else if (condition.equalsIgnoreCase("Rain")) {
+            return R.drawable.ic_rain;
+        } else if (condition.equalsIgnoreCase("Snow")) {
+            return R.drawable.ic_snow;
+        }
         return R.drawable.ic_cloud; // Icône par défaut
     }
 }
